@@ -1,7 +1,7 @@
 {
-  "name": "palettee-api",
+  "name": "smart-fir-api",
   "version": "1.0.0",
-  "description": "color palette",
+  "description": "Smart e-FIR",
   "main": "index.js",
   "engines": {
     "node": "18.12.1"
@@ -15,8 +15,8 @@
     "start": "node public/index.js"
   },
   "keywords": [
-    "color",
-    "palette",
+    "smart",
+    "fir",
     "api"
   ],
   "author": "yashfalke77",
