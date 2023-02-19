@@ -13,42 +13,10 @@ const Status = new Schema(
 
 const Fir = new mongoose.Schema(
   {
-    name: {
+    subject: {
       type: String,
-      minlength: 3,
-      maxlength: 255,
-    },
-    phone: {
-      type: String,
-      minlenght: 10,
-      maxlength: 10,
-    },
-    email: {
-      type: String,
-      minlength: 5,
-      maxlength: 255,
-    },
-    address: {
-      street: {
-        type: String,
-        minlength: 5,
-        maxlength: 255,
-      },
-      city: {
-        type: String,
-        minlength: 5,
-        maxlength: 255,
-      },
-      state: {
-        type: String,
-        minlength: 3,
-        maxlength: 255,
-      },
-    },
-    pincode: {
-      type: String,
-      minlength: 6,
-      maxlength: 6,
+      minlength: 10,
+      maxlength: 998,
     },
     description: {
       type: String,

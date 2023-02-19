@@ -35,7 +35,7 @@ export const controller = {
   },
 
   getAllFirs: async (req: Request, res: Response) => {
-    const firs = await Fir.find();
+    const firs = await Fir.find().populate({ path: 'user' }).populate({ path: 'policeStation' });
     res.status(200).json({
       data: firs,
       meta: {
