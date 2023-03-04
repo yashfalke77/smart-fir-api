@@ -26,7 +26,12 @@ interface UserMethods {
 }
 
 interface UserStatic extends Model<User, {}, UserMethods> {
-  findAndValidate: (email: string, password: string) => Promise<boolean>;
+  findAndValidate: (email: string, password: string) => Promise<UserAuthValidate>;
+}
+
+interface UserAuthValidate {
+  isValid: boolean,
+  generateAuthToken: () => Promise<string>;
 }
 
 const User = new mongoose.Schema<User, UserStatic, UserMethods>({
@@ -111,7 +116,7 @@ User.statics.findAndValidate = async function (email, password) {
   const foundUser = await this.findOne({ email });
   if (!foundUser) return false;
   const isValid = await bcrypt.compare(password, foundUser.password);
-  return isValid ? foundUser : false;
+  return {isValid: isValid ? foundUser : false};
 };
 
 User.methods.generateAuthToken = async function () {

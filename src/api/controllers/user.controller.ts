@@ -48,7 +48,7 @@ export const controller = {
   loginUser: async (req: Request, res: Response) => {
     const { email, password } = req.body;
     const user = await User.findAndValidate(email, password);
-    if (!user) throw new ExpressError("Invalid Credentials", 400);
+    if (!user.isValid) throw new ExpressError("Invalid Credentials", 400);
     const token = await user.generateAuthToken();
     res.status(200).json({
       data: token,
