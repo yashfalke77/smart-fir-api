@@ -25,7 +25,7 @@ const PoliceStation = new Schema({
     maxlength: 255,
     required: true,
   },
-  inchargeName: {
+  inChargeName: {
     type: String,
     minlength: 3,
     maxlength: 255,

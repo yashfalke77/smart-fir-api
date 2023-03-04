@@ -7,7 +7,7 @@ const policeStationSchema = Joi.object({
   address: Joi.string().min(5).max(255).required(),
   pincode: Joi.string().min(6).max(6).required(),
   area: Joi.string().min(3).max(255).required(),
-  inchargeName: Joi.string().min(3).max(255).required(),
+  inChargeName: Joi.string().min(3).max(255).required(),
 });
 
 export const validatePoliceStation = (req: Request, res: Response, next: NextFunction) => {
