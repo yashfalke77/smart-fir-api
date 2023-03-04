@@ -12,5 +12,7 @@ router.post(
 );
 router.post('/auth/login', catchAsync(controller.loginUser));
 router.get('/:id', catchAsync(controller.getUserById));
+router.post("/", validateUser, catchAsync(controller.registerUser));
+router.post("/", validateUser, catchAsync(controller.loginUser));
 
 export default router;
