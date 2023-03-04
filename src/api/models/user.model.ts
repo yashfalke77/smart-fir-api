@@ -25,16 +25,9 @@ interface UserMethods {
   generateAuthToken: () => Promise<string>;
 }
 
-interface UserStatic extends Model<User, {}, UserMethods> {
-  findAndValidate: (email: string, password: string) => Promise<UserAuthValidate>;
-}
+type UserModel = Model<User, {}, UserMethods>;
 
-interface UserAuthValidate {
-  isValid: boolean,
-  generateAuthToken: () => Promise<string>;
-}
-
-const User = new mongoose.Schema<User, UserStatic, UserMethods>({
+const User = new mongoose.Schema<User,UserModel, UserMethods>({
   name: {
     type: String,
     minlength: 3,
@@ -112,13 +105,6 @@ User.pre("save", async function (next) {
   }
 });
 
-User.statics.findAndValidate = async function (email, password) {
-  const foundUser = await this.findOne({ email });
-  if (!foundUser) return false;
-  const isValid = await bcrypt.compare(password, foundUser.password);
-  return {isValid: isValid ? foundUser : false};
-};
-
 User.methods.generateAuthToken = async function () {
   const token = await jwt.sign(
     { _id: this._id, role: this.role, email: this.email },
@@ -127,4 +113,4 @@ User.methods.generateAuthToken = async function () {
   return token;
 };
 
-export default mongoose.model<User, UserStatic>("User", User);
+export default mongoose.model<User, UserModel>("User", User);
