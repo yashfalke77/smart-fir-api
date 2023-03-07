@@ -7,7 +7,7 @@ const userSchema = Joi.object({
   firs: Joi.array().items(Joi.string().required()),
   email: Joi.string().min(5).max(255).required(),
   gender: Joi.string().valid("male", "female", "other"),
-  phone: Joi.string().min(10).max(10).required(),
+  phone: Joi.string().min(11).max(11).required(),
   address: Joi.object({
     street: Joi.string().min(5).max(255).required(),
     city: Joi.string().min(5).max(255).required(),
