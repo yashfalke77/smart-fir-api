@@ -27,7 +27,7 @@ interface UserMethods {
 
 type UserModel = Model<User, {}, UserMethods>;
 
-const User = new mongoose.Schema<User,UserModel, UserMethods>({
+const User = new mongoose.Schema<User, UserModel, UserMethods>({
   name: {
     type: String,
     minlength: 3,
@@ -107,9 +107,10 @@ User.pre("save", async function (next) {
 
 User.methods.generateAuthToken = async function () {
   const token = await jwt.sign(
-    { _id: this._id, role: this.role, email: this.email },
-    config.jwtSecret as string
-  ); // , { expiresIn: jwtExpirationInterval }
+    { _id: this._id, role: this.role, name: this.name },
+    config.jwtSecret as string,
+    { expiresIn: config.jwtExpirationInterval }
+  ); //1min
   return token;
 };
 

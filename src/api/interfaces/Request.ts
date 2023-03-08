@@ -1,4 +1,4 @@
-import { Request } from 'express';
+import { Request } from "express";
 
 interface User {
   _id: string;
@@ -21,7 +21,6 @@ interface User {
   updatedAt: Date;
   __v: number;
 }
-
 export default interface AuthRequest extends Request {
   user: User;
 }
