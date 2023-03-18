@@ -28,11 +28,22 @@ const loginUserSchema = Joi.object({
   password: Joi.string().required().min(8).max(1024),
 });
 
-export const loginUser = (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
+const updateUserSchema = Joi.object({
+  name: Joi.string().min(3).max(255),
+  email: Joi.string().min(5).max(255),
+  phone: Joi.string().min(11).max(11),
+  address: Joi.object({
+    street: Joi.string().min(5).max(255),
+    city: Joi.string().min(5).max(255),
+    state: Joi.string().min(3).max(255),
+  }),
+  pincode: Joi.string().min(6).max(6),
+  password: Joi.string().min(8).max(1024),
+  role: Joi.string().valid("user", "admin", "authority").default("user"),
+  isActive: Joi.boolean().default(true),
+});
+
+export const loginUser = (req: Request, res: Response, next: NextFunction) => {
   const { error } = loginUserSchema.validate(req.body);
   if (error) {
     const msg = error.details.map((el) => el.message).join(", ");
@@ -48,6 +59,20 @@ export const validateUser = (
   next: NextFunction
 ) => {
   const { error } = userSchema.validate(req.body);
+  if (error) {
+    const msg = error.details.map((el) => el.message).join(",");
+    throw new ExpressError(msg, 400);
+  } else {
+    next();
+  }
+};
+
+export const validateUpdateUser = (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  const { error } = updateUserSchema.validate(req.body);
   if (error) {
     const msg = error.details.map((el) => el.message).join(",");
     throw new ExpressError(msg, 400);
