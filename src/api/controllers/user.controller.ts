@@ -32,7 +32,10 @@ export const controller = {
     if (!isValid) throw new ExpressError('Invalid Credentials', 400);
     const token = await foundUser.generateAuthToken();
     res.status(200).json({
-      data: token,
+      data: {
+        token,
+        user: foundUser
+      },
       meta: {
         message: 'Login Successful....',
         flag: 'SUCCESS',
