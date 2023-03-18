@@ -57,4 +57,44 @@ export const controller = {
       },
     });
   },
+
+  getAllUsers: async (req: Request, res: Response) => {
+    const users = await User.find();
+    res.status(200).json({
+      data: users,
+      meta: {
+        message: 'Fetched Users Successfully...',
+        flag: 'SUCCESS',
+        statusCode: 200,
+      },
+    });
+  },
+
+  deleteUser: async (req: Request, res: Response) => {
+    const { params } = req;
+    const user = await User.findByIdAndDelete(params.id);
+    if (!user) throw new ExpressError("User doesn't exists...", 400);
+    res.status(200).json({
+      data: user,
+      meta: {
+        message: 'Deleted User Successfully...',
+        flag: 'SUCCESS',
+        statusCode: 200,
+      },
+    });
+  },
+
+  updateUser: async (req: Request, res: Response) => {
+    const { params, body } = req;
+    const user = await User.updateOne({ _id: params.id }, body);
+    if (!user) throw new ExpressError("User doesn't exists...", 400);
+    res.status(200).json({
+      data: user,
+      meta: {
+        message: 'Updated User Successfully...',
+        flag: 'SUCCESS',
+        statusCode: 200,
+      },
+    });
+  },
 };

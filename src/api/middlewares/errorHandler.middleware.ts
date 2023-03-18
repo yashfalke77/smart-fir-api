@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
-import { ExpressErrorInterface } from '../interface/expressErrorInterface';
+import { ExpressErrorInterface } from '../interfaces/expressErrorInterface';
 
 export default (
   err: ExpressErrorInterface,
