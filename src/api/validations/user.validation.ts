@@ -24,7 +24,7 @@ const userSchema = Joi.object({
 });
 
 const loginUserSchema = Joi.object({
-  email: Joi.string().required().email().min(5).max(255),
+  phone: Joi.string().min(10).max(10).required(),
   password: Joi.string().required().min(8).max(1024),
 });
 

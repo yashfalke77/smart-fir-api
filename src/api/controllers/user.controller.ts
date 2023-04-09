@@ -24,8 +24,8 @@ export const controller = {
   },
 
   loginUser: async (req: Request, res: Response) => {
-    const { email, password } = req.body;
-    const foundUser = await User.findOne({ email });
+    const { phone, password } = req.body;
+    const foundUser = await User.findOne({ phone });
     console.log(foundUser)
     if (!foundUser) throw new ExpressError('Invalid Credentials', 400);
     const isValid = await bcrypt.compare(password, foundUser.password);
