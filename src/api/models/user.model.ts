@@ -51,8 +51,8 @@ const User = new mongoose.Schema<User, UserModel, UserMethods>({
   },
   phone: {
     type: String,
-    minlenght: 11,
-    maxlength: 11,
+    minlenght: 10,
+    maxlength: 10,
   },
   address: {
     street: {
