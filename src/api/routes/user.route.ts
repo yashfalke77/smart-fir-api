@@ -11,6 +11,6 @@ router.get("/", catchAsync(controller.getAllUsers));
 router.post("/register", validateUser, catchAsync(controller.registerUser));
 router.patch("/update", auth, validateUpdateUser, catchAsync(controller.updateUser));
 router.post("/login", loginUser, catchAsync(controller.loginUser));
-router.delete("/:id", auth, catchAsync(controller.deleteUser));
+router.delete("/:id", catchAsync(controller.deleteUser));
 
 export default router;
