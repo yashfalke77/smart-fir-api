@@ -7,7 +7,9 @@ export const controller = {
   createFir: async (req: Request, res: Response) => {
     const { body } = req;
     await Fir.find({ subject: body.subject }).then((fir) => { 
-      throw new ExpressError('FIR already exists...', 400);
+      if (fir.length !== 0){
+        throw new ExpressError('FIR already exists...', 400);
+      }
     });
     const fir = await Fir.create(body);
     res.status(200).json({
