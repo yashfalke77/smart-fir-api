@@ -53,6 +53,7 @@ const User = new mongoose.Schema<User, UserModel, UserMethods>({
     type: String,
     minlenght: 10,
     maxlength: 10,
+    unique: true,
   },
   address: {
     street: {
