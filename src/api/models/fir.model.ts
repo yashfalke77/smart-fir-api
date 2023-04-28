@@ -1,4 +1,4 @@
-import mongoose, { Schema } from 'mongoose';
+import mongoose, { Schema } from "mongoose";
 
 const Status = new Schema(
   {
@@ -8,7 +8,7 @@ const Status = new Schema(
       maxlength: 2048,
     },
   },
-  { timestamps: true },
+  { timestamps: true }
 );
 
 const Fir = new mongoose.Schema(
@@ -17,6 +17,7 @@ const Fir = new mongoose.Schema(
       type: String,
       minlength: 10,
       maxlength: 998,
+      unique: true,
     },
     description: {
       type: String,
@@ -25,12 +26,12 @@ const Fir = new mongoose.Schema(
     },
     policeStation: {
       type: Schema.Types.ObjectId,
-      ref: 'PoliceStation',
+      ref: "PoliceStation",
       required: true,
     },
     user: {
       type: Schema.Types.ObjectId,
-      ref: 'User',
+      ref: "User",
       required: true,
     },
     isEnabled: {
@@ -51,7 +52,7 @@ const Fir = new mongoose.Schema(
       type: Number,
     }
   },
-  { timestamps: true },
+  { timestamps: true }
 );
 
-export default mongoose.model('Fir', Fir);
+export default mongoose.model("Fir", Fir);
