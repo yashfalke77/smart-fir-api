@@ -19,11 +19,11 @@ const firSchema = Joi.object({
 });
 
 const updateFirSchema = Joi.object({
-  subject: Joi.string().min(10).max(998).required(),
-  description: Joi.string().min(10).max(2048).required(),
-  isEnabled: Joi.boolean().required(),
-  status: Joi.array().items(statusSchema).required(),
-  investigationOfficer: Joi.string().min(3).max(255).required(),
+  subject: Joi.string().min(10).max(998),
+  description: Joi.string().min(10).max(2048),
+  isEnabled: Joi.boolean(),
+  status: Joi.array().items(statusSchema),
+  investigationOfficer: Joi.string().min(3).max(255),
   transactionHash : Joi.string(),
   FIRnumber: Joi.number()
 });
