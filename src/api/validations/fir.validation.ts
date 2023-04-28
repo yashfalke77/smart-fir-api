@@ -14,6 +14,8 @@ const firSchema = Joi.object({
   isEnabled: Joi.boolean().default(false),
   status: Joi.array().items(statusSchema),
   investigationOfficer: Joi.string().min(3).max(255),
+  transactionHash : Joi.string(),
+  FIRnumber: Joi.number()
 });
 
 const updateFirSchema = Joi.object({
@@ -22,6 +24,8 @@ const updateFirSchema = Joi.object({
   isEnabled: Joi.boolean().required(),
   status: Joi.array().items(statusSchema).required(),
   investigationOfficer: Joi.string().min(3).max(255).required(),
+  transactionHash : Joi.string(),
+  FIRnumber: Joi.number()
 });
 
 export const validateFir = (

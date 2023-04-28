@@ -44,6 +44,12 @@ const Fir = new mongoose.Schema(
       minlength: 3,
       maxlength: 255,
     },
+    transactionHash: {
+      type: String
+    },
+    FIRnumber:{
+      type: Number,
+    }
   },
   { timestamps: true },
 );
