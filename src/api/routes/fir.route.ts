@@ -11,5 +11,6 @@ router.patch("/:id", validateUpdate, catchAsync(controller.updateFir));
 router.get("/", catchAsync(controller.getAllFirs));
 router.get("/:id", catchAsync(controller.getFirById));
 router.get("/station/:id", catchAsync(controller.getFirByPoliceStation));
+router.get("/user/:id", catchAsync(controller.getFirByUser));
 
 export default router;

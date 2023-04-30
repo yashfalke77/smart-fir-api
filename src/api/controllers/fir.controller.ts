@@ -87,4 +87,18 @@ export const controller = {
       },
     });
   },
+
+  getFirByUser: async (req: Request, res: Response) => {
+    const { params } = req;
+    const fir = await Fir.find({ user: params.id }).populate({ path: 'user' }).populate({ path: 'policeStation' });
+    if (!fir) throw new ExpressError("FIR doesn't exists...", 400);
+    res.status(200).json({
+      data: fir,
+      meta: {
+        message: 'Fetched FIR Successfully...',
+        flag: 'SUCCESS',
+        statusCode: 200,
+      },
+    });
+  },
 };
