@@ -62,7 +62,7 @@ export const controller = {
 
   getFirById: async (req: Request, res: Response) => {
     const { params } = req;
-    const fir = await Fir.findById(params.id);
+    const fir = await Fir.findById(params.id).populate({ path: 'policeStation'});
     if (!fir) throw new ExpressError("FIR doesn't exists...", 400);
     res.status(200).json({
       data: fir,
