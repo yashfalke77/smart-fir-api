@@ -13,7 +13,7 @@ export const controller = {
       }
     });
     const fir = await Fir.create(body);
-    const user = await User.findById(body._id);
+    const user = await User.findById(body.user);
     user?.firs.push(fir._id as unknown as string);
     await user?.save();
     res.status(200).json({
@@ -28,6 +28,11 @@ export const controller = {
 
   updateFir: async (req: Request, res: Response) => {
     const { body, params } = req;
+    if (body.status) {
+      const foundFir = await Fir.findById(params.id);
+      if (!foundFir) throw new ExpressError("FIR doesn't exists...", 400);
+      body.status = [...foundFir.status, ...body.status];
+    }
     const fir = await Fir.findByIdAndUpdate(params.id, body, {
       new: true,
       runValidators: true,
@@ -58,6 +63,20 @@ export const controller = {
   getFirById: async (req: Request, res: Response) => {
     const { params } = req;
     const fir = await Fir.findById(params.id);
+    if (!fir) throw new ExpressError("FIR doesn't exists...", 400);
+    res.status(200).json({
+      data: fir,
+      meta: {
+        message: 'Fetched FIR Successfully...',
+        flag: 'SUCCESS',
+        statusCode: 200,
+      },
+    });
+  },
+
+  getFirByPoliceStation: async (req: Request, res: Response) => {
+    const { params } = req;
+    const fir = await Fir.find({ policeStation: params.id }).populate({ path: 'user' }).populate({ path: 'policeStation' });
     if (!fir) throw new ExpressError("FIR doesn't exists...", 400);
     res.status(200).json({
       data: fir,

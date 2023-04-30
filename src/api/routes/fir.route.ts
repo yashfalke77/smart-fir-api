@@ -7,10 +7,9 @@ import { auth } from "../middlewares/auth";
 const router = express.Router();
 
 router.post("/", validateFir, catchAsync(controller.createFir));
-router.patch("/:id", catchAsync(controller.updateFir));
+router.patch("/:id", validateUpdate, catchAsync(controller.updateFir));
 router.get("/", catchAsync(controller.getAllFirs));
 router.get("/:id", catchAsync(controller.getFirById));
-
-// console test
+router.get("/station/:id", catchAsync(controller.getFirByPoliceStation));
 
 export default router;

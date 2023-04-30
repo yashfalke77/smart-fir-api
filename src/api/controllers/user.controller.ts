@@ -46,7 +46,7 @@ export const controller = {
 
   getUserById: async (req: Request, res: Response) => {
     const { params } = req;
-    const user = await User.findById(params.id);
+    const user = await User.findById(params.id).populate({ path: 'firs' });
     if (!user) throw new ExpressError("User doesn't exists...", 400);
     res.status(200).json({
       data: user,

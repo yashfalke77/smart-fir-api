@@ -6,6 +6,7 @@ const Status = new Schema(
       type: String,
       minlength: 10,
       maxlength: 2048,
+      default: "FIR Registered",
     },
   },
   { timestamps: true }
