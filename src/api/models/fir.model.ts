@@ -51,6 +51,10 @@ const Fir = new mongoose.Schema(
     },
     FIRnumber:{
       type: Number,
+    },
+    evidenceUrl:{
+      type: String,
+      maxlength: 2048,
     }
   },
   { timestamps: true }

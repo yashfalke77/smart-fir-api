@@ -15,7 +15,8 @@ const firSchema = Joi.object({
   status: Joi.array().items(statusSchema),
   investigationOfficer: Joi.string().min(3).max(255),
   transactionHash : Joi.string(),
-  FIRnumber: Joi.number()
+  FIRnumber: Joi.number(),
+  evidenceUrl: Joi.url().max(2048)
 });
 
 const updateFirSchema = Joi.object({
@@ -25,7 +26,8 @@ const updateFirSchema = Joi.object({
   status: Joi.array().items(statusSchema),
   investigationOfficer: Joi.string().min(3).max(255),
   transactionHash : Joi.string(),
-  FIRnumber: Joi.number()
+  FIRnumber: Joi.number(),
+  evidenceUrl: Joi.url().max(2048)
 });
 
 export const validateFir = (
